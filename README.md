@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="" alt="Sentinel Crypto Bot and Mini App banner" width="100%">
+  <img src="https://github.com/user-attachments/assets/4a09fb91-b79f-474e-abc1-991cbc799e5a" alt="Sentinel Crypto Bot and Mini App banner" width="100%">
 </p>
 
 
@@ -73,10 +73,10 @@ Current USD prices for supported coins, available from both the Telegram bot and
   <tbody>
     <tr>
       <td align="center">
-        <img src="" width="260" alt="Market Prices Bot Demo">
+        <img src="https://github.com/user-attachments/assets/c757099e-5ea5-4b8a-969f-ff6f5bfc9408" width="260" alt="Market Prices Bot Demo">
       </td>
       <td>
-        <img src="" width="260" alt="Market Prices Mini App Demo">
+        <img src="https://github.com/user-attachments/assets/2e17fe90-d4c4-4f37-8491-d6ad15e50338" width="260" alt="Market Prices Mini App Demo">
       </td>
     </tr>
   </tbody>
@@ -100,10 +100,10 @@ disabled alerts in history.
   <tbody>
     <tr>
       <td align="center">
-        <img src="" width="260" alt="Market Prices Bot Demo">
+        <img src="https://github.com/user-attachments/assets/2c5594a3-3847-4c61-8a23-97418b9382ff" width="260" alt="Market Prices Bot Demo">
       </td>
       <td>
-        <img src="" width="260" alt="Market Prices Mini App Demo">
+        <img src="https://github.com/user-attachments/assets/06f36d18-6aad-4a02-b8cb-066c341e42d9" width="260" alt="Market Prices Mini App Demo">
       </td>
     </tr>
   </tbody>
@@ -127,10 +127,10 @@ latest locally generated whale events.
   <tbody>
     <tr>
       <td align="center">
-        <img src="" width="260" alt="Market Prices Bot Demo">
+        <img src="https://github.com/user-attachments/assets/1c9c2013-1fce-4a57-8aea-6bd34c0b6839" width="260" alt="Market Prices Bot Demo">
       </td>
       <td>
-        <img src="" width="260" alt="Market Prices Mini App Demo">
+        <img src="https://github.com/user-attachments/assets/5e8ca3fa-f8e6-4047-b775-1ea85ba8711c" width="260" alt="Market Prices Mini App Demo">
       </td>
     </tr>
   </tbody>
@@ -154,10 +154,10 @@ contract address. Results are formatted for both chat and Mini App views.
   <tbody>
     <tr>
       <td align="center">
-        <img src="" width="260" alt="Market Prices Bot Demo">
+        <img src="https://github.com/user-attachments/assets/da2cf239-db69-4ab7-bc34-c6055f3f333d" width="260" alt="Market Prices Bot Demo">
       </td>
       <td>
-        <img src="" width="260" alt="Market Prices Mini App Demo">
+        <img src="https://github.com/user-attachments/assets/eee78e52-44c0-43b8-9eee-10c65f0cc207" width="260" alt="Market Prices Mini App Demo">
       </td>
     </tr>
   </tbody>
