@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    >
+    <title>Sentinel Crypto Mini App</title>
+    <link rel="stylesheet" href="./css/base.css?v=20260526-csssplit">
+    <link rel="stylesheet" href="./css/layout.css?v=20260526-csssplit">
+    <link rel="stylesheet" href="./css/components.css?v=20260526-csssplit">
+    <link rel="stylesheet" href="./css/alerts.css?v=20260526-csssplit">
+    <link rel="stylesheet" href="./css/whales.css?v=20260526-csssplit">
+    <link rel="stylesheet" href="./css/risk_check.css?v=20260526-csssplit">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <main class="app-shell">
+        <section class="hero-card">
+            <div>
+                <p class="eyebrow">Sentinel Crypto</p>
+                <h1>Crypto alerts and token safety</h1>
+                <p class="hero-text">
+                    Track supported coins, create price alerts, check token
+                    contracts, and manage everything directly from Telegram.
+                </p>
+            </div>
+            <div class="status-pill" id="authStatus">Loading</div>
+        </section>
+
+        <nav class="tabs" aria-label="Mini App sections">
+            <button class="tab-button active" type="button" data-view="prices">
+                Prices
+            </button>
+            <button class="tab-button" type="button" data-view="alerts">
+                Alerts
+            </button>
+            <button class="tab-button" type="button" data-view="whales">
+                Whales
+            </button>
+            <button class="tab-button" type="button" data-view="risk">
+                Risk check
+            </button>
+        </nav>
+
+        <section class="view active" id="pricesView">
+            <div class="section-header">
+                <div>
+                    <h2>Market prices</h2>
+                    <p>Current USD prices for supported coins.</p>
+                </div>
+                <button class="secondary-button" type="button" id="refreshPricesButton">
+                    Refresh
+                </button>
+            </div>
+            <div class="card-list" id="pricesList"></div>
+        </section>
+
+        <section class="view" id="alertsView">
+            <div class="alerts-create-section">
+                <div class="subsection-header">
+                    <h3>Create alert</h3>
+                    <p>Choose a coin, condition, and target price.</p>
+                </div>
+
+                <form class="form-card" id="createAlertForm">
+                    <div class="field">
+                        <span>Coin</span>
+
+                        <div class="custom-select" data-select="coin">
+                            <button
+                                class="custom-select-trigger"
+                                id="coinSelectButton"
+                                type="button"
+                                aria-haspopup="listbox"
+                                aria-expanded="false"
+                                aria-controls="coinSelectList"
+                            >
+                                <span id="coinSelectButtonText">Choose coin</span>
+                                <span class="custom-select-arrow" aria-hidden="true">⌄</span>
+                            </button>
+
+                            <div
+                                class="custom-select-menu"
+                                id="coinSelectList"
+                                role="listbox"
+                                aria-labelledby="coinSelectButton"
+                            ></div>
+                        </div>
+
+                        <input id="coinSelect" type="hidden" required>
+                    </div>
+
+                    <div class="field">
+                        <span>Condition</span>
+
+                        <div class="custom-select" data-select="condition">
+                            <button
+                                class="custom-select-trigger"
+                                id="conditionSelectButton"
+                                type="button"
+                                aria-haspopup="listbox"
+                                aria-expanded="false"
+                                aria-controls="conditionSelectList"
+                            >
+                                <span id="conditionSelectButtonText">Choose condition</span>
+                                <span class="custom-select-arrow" aria-hidden="true">⌄</span>
+                            </button>
+
+                            <div
+                                class="custom-select-menu"
+                                id="conditionSelectList"
+                                role="listbox"
+                                aria-labelledby="conditionSelectButton"
+                            ></div>
+                        </div>
+
+                        <input id="conditionSelect" type="hidden" required>
+                    </div>
+
+                    <label class="field">
+                        <span>Target price, USD</span>
+
+                        <div class="number-input">
+                            <input
+                                id="targetPriceInput"
+                                type="text"
+                                inputmode="decimal"
+                                autocomplete="off"
+                                placeholder="100000"
+                                required
+                            >
+
+                            <div class="number-input-controls" aria-hidden="false">
+                                <button
+                                    class="number-input-button"
+                                    id="increaseTargetPriceButton"
+                                    type="button"
+                                    aria-label="Increase target price"
+                                >
+                                    <span class="number-input-arrow" aria-hidden="true">⌃</span>
+                                </button>
+
+                                <button
+                                    class="number-input-button"
+                                    id="decreaseTargetPriceButton"
+                                    type="button"
+                                    aria-label="Decrease target price"
+                                >
+                                    <span class="number-input-arrow" aria-hidden="true">⌄</span>
+                                </button>
+                            </div>
+                        </div>
+                    </label>
+
+                    <button class="primary-button" type="submit">
+                        Create alert
+                    </button>
+                </form>
+            </div>
+
+            <div class="alerts-list-section">
+                <div class="section-header compact-section-header alerts-list-header">
+                    <div>
+                        <h3 id="alertsTitle">My active alerts</h3>
+                        <p id="alertsDescription">
+                            Alerts are created for your Telegram account only.
+                        </p>
+                    </div>
+                    <button class="secondary-button" type="button" id="refreshAlertsButton">
+                        Refresh
+                    </button>
+                </div>
+
+                <div class="segmented-control" aria-label="Alert list mode">
+                    <button
+                        class="segment-button active"
+                        type="button"
+                        data-alerts-mode="active"
+                    >
+                        Active
+                    </button>
+                    <button
+                        class="segment-button"
+                        type="button"
+                        data-alerts-mode="history"
+                    >
+                        History
+                    </button>
+                </div>
+
+                <div class="card-list" id="alertsList"></div>
+            </div>
+        </section>
+
+        <section class="view" id="whalesView">
+            <div class="section-header">
+                <div>
+                    <h2>Whale alerts</h2>
+                    <p>Track large simulated market movements and notification settings.</p>
+                </div>
+                <button class="secondary-button" type="button" id="refreshWhalesButton">
+                    Refresh
+                </button>
+            </div>
+
+            <article class="data-card whale-summary-card" id="whaleSummary">
+                <div class="whale-summary-body">
+                    <div class="whale-summary-details">
+                        <p class="card-meta" id="whaleTrackedAssets"></p>
+                        <p class="card-meta" id="whaleEventTypes"></p>
+                    </div>
+                    <p class="card-meta whale-summary-warning" id="whaleProviderWarning"></p>
+                </div>
+            </article>
+
+            <form class="form-card whale-settings-card" id="whaleSettingsForm">
+                <label class="switch-field">
+                    <input id="whaleAlertsEnabledInput" type="checkbox">
+                    <span class="switch-control" aria-hidden="true"></span>
+                    <span>
+                        <span class="switch-title">Enable whale notifications</span>
+                        <span class="switch-description">
+                            Send Telegram alerts when a whale event is above your threshold.
+                        </span>
+                    </span>
+                </label>
+
+                <label class="field">
+                    <span>Minimum value, USD</span>
+                    <input
+                        id="whaleMinUsdInput"
+                        type="text"
+                        inputmode="decimal"
+                        autocomplete="off"
+                        placeholder="1000000"
+                        required
+                    >
+                </label>
+
+                <div class="settings-actions">
+                    <p class="card-meta whale-settings-status" id="whaleSettingsStatus">
+                        Loading
+                    </p>
+                    <button
+                        class="primary-button"
+                        type="submit"
+                        id="whaleSettingsSubmitButton"
+                    >
+                        Save settings
+                    </button>
+                </div>
+            </form>
+
+            <div class="section-header compact-section-header">
+                <div>
+                    <h2>Latest whale events</h2>
+                    <p>Newest stored whale movements from the worker.</p>
+                </div>
+            </div>
+
+            <div class="card-list" id="whaleEventsList"></div>
+        </section>
+
+        <section class="view" id="riskView">
+            <div class="section-header">
+                <div>
+                    <h2>Token risk check</h2>
+                    <p>Check a smart contract for risky behavior.</p>
+                </div>
+            </div>
+
+            <form class="form-card" id="riskCheckForm">
+                <div class="field">
+                    <span>Blockchain</span>
+
+                    <div class="custom-select" data-select="chain">
+                        <button
+                            class="custom-select-trigger"
+                            id="chainSelectButton"
+                            type="button"
+                            aria-haspopup="listbox"
+                            aria-expanded="false"
+                            aria-controls="chainSelectList"
+                        >
+                            <span id="chainSelectButtonText">Choose blockchain</span>
+                            <span class="custom-select-arrow" aria-hidden="true">⌄</span>
+                        </button>
+
+                        <div
+                            class="custom-select-menu"
+                            id="chainSelectList"
+                            role="listbox"
+                            aria-labelledby="chainSelectButton"
+                        ></div>
+                    </div>
+
+                    <input id="chainSelect" type="hidden" required>
+                </div>
+
+                <label class="field">
+                    <span>Contract address</span>
+                    <input
+                        id="contractAddressInput"
+                        type="text"
+                        autocomplete="off"
+                        placeholder="0x0000000000000000000000000000000000000000"
+                        required
+                    >
+                </label>
+
+                <button class="primary-button" type="submit" id="riskCheckSubmitButton">
+                    Check token
+                </button>
+            </form>
+
+            <div class="card-list risk-result-list" id="riskCheckResult"></div>
+        </section>
+
+        <div class="toast" id="toast" hidden></div>
+    </main>
+
+    <div
+        class="modal-backdrop"
+        id="disableConfirmModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="disableConfirmTitle"
+        aria-describedby="disableConfirmDescription"
+        hidden
+    >
+        <section class="modal-card" tabindex="-1">
+            <div class="modal-icon" aria-hidden="true">❌</div>
+
+            <h2 class="modal-title" id="disableConfirmTitle">
+                Disable alert?
+            </h2>
+
+            <p class="modal-text" id="disableConfirmDescription">
+                This active alert will be disabled and kept in history.
+            </p>
+
+            <div class="modal-actions">
+                <button
+                    class="secondary-button modal-button"
+                    type="button"
+                    id="cancelDisableAlertButton"
+                >
+                    Cancel
+                </button>
+                <button
+                    class="danger-button modal-button"
+                    type="button"
+                    id="confirmDisableAlertButton"
+                >
+                    Disable
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <script type="module" src="./js/app.js?v=20260525-riskfix"></script>
+</body>
+</html>

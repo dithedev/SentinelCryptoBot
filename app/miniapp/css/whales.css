@@ -1,0 +1,49 @@
+/* Whale settings summary, whale event cards, and long hash formatting. */
+
+.whale-summary-card {
+    align-items: stretch;
+    margin-bottom: 14px;
+}
+
+.whale-summary-body {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+}
+
+.whale-summary-details {
+    display: grid;
+    gap: 4px;
+}
+
+.whale-summary-warning {
+    color: var(--warning);
+}
+.whale-settings-status {
+    margin-bottom: 0;
+}
+.hash-value {
+    display: block;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+.whale-card {
+    align-items: stretch;
+}
+
+.whale-card-body {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+}
+
+.whale-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.whale-card-heading .card-title {
+    margin-bottom: 0;
+}

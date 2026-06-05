@@ -1,0 +1,36 @@
+{
+  "base_score": 100,
+  "risk_levels": {
+    "low_min_score": 75,
+    "medium_min_score": 40
+  },
+  "boolean_penalties": {
+    "is_honeypot": 100,
+    "cannot_sell_all": 100,
+    "is_blacklisted": 45,
+    "is_proxy": 35,
+    "hidden_owner": 35,
+    "slippage_modifiable": 35,
+    "personal_slippage_modifiable": 35,
+    "selfdestruct": 30,
+    "owner_change_balance": 25,
+    "can_take_back_ownership": 25,
+    "is_mintable": 20,
+    "external_call": 15,
+    "trading_cooldown": 15
+  },
+  "tax_rules": {
+    "buy_tax": {
+      "medium_threshold": 10,
+      "high_threshold": 30,
+      "medium_penalty": 30,
+      "high_penalty": 70
+    },
+    "sell_tax": {
+      "medium_threshold": 10,
+      "high_threshold": 30,
+      "medium_penalty": 30,
+      "high_penalty": 70
+    }
+  }
+}

@@ -1,0 +1,115 @@
+/* Token risk result cards, normalized signal lists, and risk disclaimers. */
+
+.risk-detail-list {
+    display: grid;
+    gap: 6px;
+}
+
+.risk-detail-row {
+    display: grid;
+    gap: 3px;
+}
+
+.risk-detail-label {
+    color: var(--muted);
+    font-weight: 700;
+}
+.risk-result-list {
+    margin-top: 10px;
+}
+
+.risk-signals-title {
+    margin: 0;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.risk-signal-list {
+    display: grid;
+    gap: 6px;
+    margin: 6px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.risk-signal-list li {
+    display: grid;
+    gap: 2px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 7px 10px;
+    color: var(--muted);
+    background: rgba(15, 23, 42, 0.42);
+}
+
+.risk-signal-name {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.risk-signal-value {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.35;
+}
+
+.risk-signal-list li.risk-low {
+    color: var(--success);
+    border-color: rgba(52, 211, 153, 0.34);
+    background: rgba(52, 211, 153, 0.1);
+}
+
+.risk-signal-list li.risk-medium {
+    color: var(--warning);
+    border-color: rgba(251, 191, 36, 0.34);
+    background: rgba(251, 191, 36, 0.1);
+}
+
+.risk-signal-list li.risk-high {
+    color: var(--danger);
+    border-color: rgba(251, 113, 133, 0.34);
+    background: rgba(251, 113, 133, 0.1);
+}
+
+.risk-signal-list li.risk-low .risk-signal-name,
+.risk-signal-list li.risk-low .risk-signal-value,
+.risk-signal-list li.risk-medium .risk-signal-name,
+.risk-signal-list li.risk-medium .risk-signal-value,
+.risk-signal-list li.risk-high .risk-signal-name,
+.risk-signal-list li.risk-high .risk-signal-value {
+    color: inherit;
+}
+
+.risk-disclaimer {
+    margin: 10px 0 0;
+    color: var(--warning);
+    font-size: 14px;
+    line-height: 1.5;
+}
+    .alert-card-heading,
+    .whale-card-heading,
+    .risk-result-heading {
+        align-items: flex-start;
+    }
+.risk-result-card {
+    align-items: stretch;
+}
+
+.risk-result-body {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+}
+
+.risk-result-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.risk-result-heading .card-title {
+    margin-bottom: 0;
+}
